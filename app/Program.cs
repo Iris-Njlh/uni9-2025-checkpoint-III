@@ -15,12 +15,34 @@ if (!int.TryParse(resposta, out canal))
 
 TextMessage messageBase = new TextMessage("Olá");
 VideoMessage video = new VideoMessage("Olá");
-if(canal == 1)
+PhotoMessage foto = new PhotoMessage("Olá");
+FileMessage arquivo = new FileMessage("Olá");
+
+if (canal == 1)
 {
     var whats = new WhatsApp();
     whats.EnviarMensagem("12345678", messageBase);
-
     whats.EnviarMensagem("87654321", video);
 }
-
-
+else if (canal == 2)
+{
+    var telegram = new Telegram();
+    telegram.EnviarMensagem("@usuarioTelegram", messageBase);
+    telegram.EnviarMensagem("@usuarioTelegram", foto);
+}
+else if (canal == 3)
+{
+    var insta = new Instagram();
+    insta.EnviarMensagem("usuarioInstagram", messageBase);
+    insta.EnviarMensagem("usuarioInstagram", arquivo);
+}
+else if (canal == 4)
+{
+    var face = new Facebook();
+    face.EnviarMensagem("usuarioFacebook", messageBase);
+    face.EnviarMensagem("usuarioFacebook", video);
+}
+else
+{
+    Console.WriteLine("Canal inválido");
+}
